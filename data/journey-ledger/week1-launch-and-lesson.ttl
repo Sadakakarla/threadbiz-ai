@@ -6,6 +6,25 @@
 # real prefixes used in your v1 Business Memory Asset .ttl before running
 # `dkg ka create`, so all assets share one consistent vocabulary.
 
+# --- Entry 0: candidate-fact (origin voice note, the source behind the
+#     confirmedFact already recorded in Business Memory Asset v1) ---
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-000>
+    a tb:JourneyEntry ;
+    tb:entryId              "entry-000" ;
+    tb:businessId           "neighborhood-table-001" ;
+    tb:entryType            "candidate-fact" ;
+    tb:title                "Origin voice note — starting The Neighborhood Table" ;
+    tb:description          "Owner's original voice note announcing the business, its name, and its purpose. This is the source behind Business Memory Asset v1's confirmedFact (source: owner-voice-note-1, confirmed 2026-09-21)." ;
+    tb:dateOccurred          "2026-09-21"^^xsd:date ;
+    tb:dateRecorded          "2026-09-21"^^xsd:date ;
+    tb:emotionalTone        "excited, hopeful" ;
+    tb:canBeUsedPublicly    false ;
+    tb:contentAngle         "origin story — internal source material" ;
+    tb:sourceType           "voice-note-transcript" ;
+    tb:sourceReference      "Hey! Okay, so — I'm finally doing this. I'm calling it The Neighborhood Table. Basically, every week, I'm gonna cook a small batch of meals using my family's recipes — the ones my mom used to make — and drop them off for a few neighbors to try, pre-order style. I do all the cooking myself, so it's staying small for now, just me in the kitchen. The whole point is I want people to actually look forward to it every week, you know? Not just a random meal, something they trust, something that feels like it's made by someone who cares. Starting tiny, but excited to see where this goes." ;
+    tb:status               "confirmed" ;
+    tb:memoryVersionUsed    "business-memory-v1" .
+
 # --- Entry 1: launch ---
 <https://threadbiz.ai/journey/neighborhood-table-001/entry-001>
     a tb:JourneyEntry ;
@@ -22,8 +41,8 @@
     tb:sourceType           "livepeer-agent-generation" ;
     tb:sourceReference      "https://v3b.fal.media/files/b/0aab856c/rAW-B_aLyEwss-bZm29R_.jpg" ;
     tb:status               "confirmed" ;
-    tb:memoryVersionUsed    "business-memory-v1" ;
-    tb:explainability       "Generated using Business Memory Asset v1: preferredTone='warm, personal, heritage' shaped the humble visual and caption style; nextContentStrategy='tie menu to a story' drove the choice to frame this as the origin/launch story rather than a plain menu post." .
+    tb:memoryVersionUsed    "business-memory-v1, entry-000" ;
+    tb:explainability       "Generated using Business Memory Asset v1 and Journey Ledger entry-000 (origin voice note). Directly draws on the confirmedFact (sourced from owner-voice-note-1, confirmed 2026-09-21): 'started from family heritage recipes, began with a small weekly pre-order drop for neighbors.' preferredTone='warm, personal, rooted in family and heritage' shaped the humble visual and caption style. seasonalContext ('menu shifts with seasonal ingredients') drove the choice of a late-tomato-season soup. Caption checked against avoidPhrases (gourmet, chef-inspired, limited time only) — none used." .
 
 # --- Entry 2: lesson-learned (logged after the batch sold out) ---
 <https://threadbiz.ai/journey/neighborhood-table-001/entry-002>
