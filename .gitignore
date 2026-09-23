@@ -10,3 +10,4 @@ docker-volumes/
 **/docker-volumes/
 volumes/
 **/volumes/
+.DS_Store
