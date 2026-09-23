@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "livepeer-agent": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "mcp-remote",
+        "https://agent.livepeer.org/api/mcp/creative",
+        "--header",
+        "X-Livepeer-Agent-Tool-Profile: lean"
+      ],
+      "env": {}
+    }
+  }
+}

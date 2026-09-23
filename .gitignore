@@ -1,0 +1,12 @@
+# Reference material (not part of the shipped project)
+reference-example/
+
+# Local DKG node home / state (machine-specific, Docker-mounted)
+dkg-home/
+**/dkg-home/
+
+# Local Docker volumes
+docker-volumes/
+**/docker-volumes/
+volumes/
+**/volumes/

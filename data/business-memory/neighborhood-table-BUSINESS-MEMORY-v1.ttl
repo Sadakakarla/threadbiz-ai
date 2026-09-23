@@ -1,0 +1,66 @@
+# ============================================================
+# THREADBIZ AI — BUSINESS MEMORY ASSET — VERSION 1
+# Business: The Neighborhood Table
+# ============================================================
+# This file describes everything the agent currently "knows" about
+# this business. It follows our locked schema exactly. Every line
+# below maps to one field we designed together.
+#
+# This is written in a format called "Turtle" (.ttl) — a standard
+# way of writing facts as "subject - property - value" triples.
+# It is NOT code. It's just structured, machine-readable facts.
+# ============================================================
+
+@prefix threadbiz: <https://threadbiz.example/#> .
+@prefix schema: <https://schema.org/> .
+
+# ------------------------------------------------------------
+# MAIN BUSINESS MEMORY RECORD
+# ------------------------------------------------------------
+threadbiz:business-memory a threadbiz:BusinessMemoryAsset ;
+
+  # --- IDENTITY: basic facts about who this business is ---
+  threadbiz:businessId "neighborhood-table-001" ;
+  threadbiz:businessName "The Neighborhood Table" ;
+  threadbiz:industry "home-based-weekly-meal-drop" ;
+  threadbiz:location "home-based, no fixed city" ;
+  threadbiz:stage "early" ;  # options: idea / early / established-local / expanding
+
+  # --- VOICE & COMMUNICATION: how content should sound ---
+  threadbiz:preferredTone "warm, personal, rooted in family and heritage" ;
+  threadbiz:avoidPhrases "gourmet, chef-inspired, limited time only (overused)" ;
+
+  # --- GOALS: what the business is trying to achieve right now ---
+  threadbiz:statedGoals "build a loyal weekly customer base through consistent, high-quality limited pre-order meals" ;
+
+  # --- SEASONAL RHYTHM: how demand changes across the year ---
+  threadbiz:seasonalContext "Weekly cadence year-round; menu shifts with seasonal ingredients; extra demand around major holidays" ;
+
+  # --- CONFIRMED FACTS: things the owner has verified are true ---
+  # (each confirmed fact records WHAT is true, WHERE it came from,
+  # and WHEN it was confirmed — this is our provenance trail)
+  threadbiz:confirmedFact [
+    threadbiz:statement "Started from family heritage recipes, began with a small weekly pre-order drop for neighbors" ;
+    threadbiz:source "owner-voice-note-1" ;
+    threadbiz:confirmedAt "2026-09-21"
+  ] ;
+
+  # --- DISTILLED MEMORY: lessons learned from past attempts ---
+  threadbiz:successfulPattern "Customers respond well when the story behind a dish (whose recipe it is, why it matters) is included, not just the dish itself" ;
+  threadbiz:knownFailure "Generic weekly announcements without a story felt forgettable and got less engagement" ;
+  threadbiz:nextContentStrategy "Always tie the week's menu to a short story or seasonal ingredient note; keep pickup/capacity details clear and consistent" ;
+
+  # --- VERSION TRACKING: this memory record's own history ---
+  threadbiz:version "1" ;
+  threadbiz:updatedAt "2026-09-21" .
+
+# ------------------------------------------------------------
+# KEY PEOPLE: who is involved in running this business
+# (kept lightweight on purpose — just name/role/note,
+# no permissions or approval logic, per our locked scope)
+# ------------------------------------------------------------
+threadbiz:key-person-owner a threadbiz:KeyPerson ;
+  threadbiz:name "Owner" ;
+  threadbiz:role "founder and cook" ;
+  threadbiz:note "cooks all meals personally, manages weekly pre-orders and pickups" ;
+  threadbiz:belongsTo threadbiz:business-memory .
