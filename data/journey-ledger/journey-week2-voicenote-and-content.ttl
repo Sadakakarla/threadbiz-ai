@@ -1,0 +1,41 @@
+@prefix tb:   <https://threadbiz.ai/ontology#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# Business Journey Ledger — Week 2 entries
+
+# --- Entry 3: candidate-fact (Week 2's owner voice note) ---
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-003>
+    a tb:JourneyEntry ;
+    tb:entryId              "entry-003" ;
+    tb:businessId           "neighborhood-table-001" ;
+    tb:entryType            "candidate-fact" ;
+    tb:title                "Owner voice note — after Week 1 deliveries" ;
+    tb:description          "Owner's voice note after finishing Week 1 pickups: mentions a returning customer (Maria) requesting roast chicken, a new customer (Dave, referred by Maria) requesting something heartier, the soup selling out faster than expected, and a reminder to keep leaning into story-driven posts." ;
+    tb:dateOccurred         "2026-09-23"^^xsd:date ;
+    tb:dateRecorded         "2026-09-23"^^xsd:date ;
+    tb:emotionalTone        "upbeat, encouraged" ;
+    tb:canBeUsedPublicly    false ;
+    tb:contentAngle         "source material — informs Week 2 dish choice, batch size, and keyPeople update" ;
+    tb:sourceType           "voice-note-transcript" ;
+    tb:sourceReference      "Hey, quick one — just finished the pickups. So Maria came back again, and this time she brought her neighbor Dave and his daughter, first time ordering from us. That's exactly the word-of-mouth thing we want, so that's nice. Maria said she'd love a roast chicken next. And Dave said he wants something heartier now the weather's turning — fair, root veggies are everywhere right now anyway. Oh — and we sold out of the soup way faster than I thought, so let's make more this time. Also let's keep doing the little story behind each dish, that's what's actually working, way more than just posting 'this week's menu.' Keep it warm, simple, like always. Nothing fancy." ;
+    tb:status               "confirmed" ;
+    tb:memoryVersionUsed    "business-memory-v1" .
+
+# --- Entry 4: content-generated (Week 2 roast chicken) ---
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-004>
+    a tb:JourneyEntry ;
+    tb:entryId              "entry-004" ;
+    tb:businessId           "neighborhood-table-001" ;
+    tb:entryType            "content-generated" ;
+    tb:title                "Week 2: Slow-Roasted Chicken with Root Vegetables" ;
+    tb:description          "Bigger-batch roast chicken with root vegetables, made in response to Week 1 selling out and Maria's request. First week featuring a new customer relationship (Dave) gained through word-of-mouth referral." ;
+    tb:dateOccurred         "2026-09-23"^^xsd:date ;
+    tb:dateRecorded         "2026-09-23"^^xsd:date ;
+    tb:emotionalTone        "warm, grateful" ;
+    tb:canBeUsedPublicly    true ;
+    tb:contentAngle         "customer-requested, bigger batch, word-of-mouth growth" ;
+    tb:sourceType           "livepeer-agent-generation" ;
+    tb:sourceReference      "PLACEHOLDER-REPLACE-WITH-IMAGE-URL" ;
+    tb:status               "candidate" ;
+    tb:memoryVersionUsed    "business-memory-v2, entry-003" ;
+    tb:explainability       "Generated using Business Memory Asset v2 and Journey Ledger entry-003 (owner voice note). Dish choice (roast chicken) directly requested by keyPerson Maria T.; batch size increased in direct response to entry-002's lesson-learned (Week 1 batch was too small) and Dave's request for something heartier. seasonalContext ('menu shifts with seasonal ingredients') supports the shift toward root vegetables as weather turns colder. nextContentStrategy and successfulPattern ('story behind a dish... not just the dish itself') directly shaped the story-driven caption rather than a plain menu post. Caption checked against avoidPhrases — none used. This is also the first content piece generated after Business Memory Asset v1 evolved to v2 (new keyPeople: Maria, Dave)." .
