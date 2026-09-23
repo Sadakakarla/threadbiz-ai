@@ -1,0 +1,59 @@
+@prefix tb:   <https://threadbiz.ai/ontology#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# Business Journey Ledger — Week 3 entries
+
+# --- Entry 6: candidate-fact (Week 3's owner voice note) ---
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-006>
+    a tb:JourneyEntry ;
+    tb:entryId              "entry-006" ;
+    tb:businessId           "neighborhood-table-001" ;
+    tb:entryType            "candidate-fact" ;
+    tb:title                "Owner voice note — first frost, new supplier, dumplings" ;
+    tb:description          "Owner's voice note on the first properly cold night: using saved chicken bones for broth and dried herbs from Week 1, introduces new supplier Rosa (reached via Dave), notes Dave's daughter requested dumplings, and reflects on story-driven posts working better across the last two weeks." ;
+    tb:dateOccurred         "2026-09-24"^^xsd:date ;
+    tb:dateRecorded         "2026-09-24"^^xsd:date ;
+    tb:emotionalTone        "warm, quietly reflective" ;
+    tb:canBeUsedPublicly    false ;
+    tb:contentAngle         "source material — informs Week 3 dish, partnership, and memory pattern update" ;
+    tb:sourceType           "voice-note-transcript" ;
+    tb:sourceReference      "Alright, it's gotten properly cold now. I saved the bones from last week's chicken, didn't want to waste them, so I've had broth going most of the day. Still had some of that basil from week one too, the dried stuff, going into the filling tonight along with some fresh vegetables. Also — I've got a new supplier now, Rosa. She runs a small farm stand a few blocks over. Dave mentioned us to her, and she reached out, had some end-of-season vegetables and herbs she wanted to find a good home for. Worked out well for both of us. Dave's daughter actually asked for dumplings specifically, apparently, so that's what tonight is. Looking back at the last couple weeks, the posts that actually did something were the ones with a real story behind them, not just a plain menu listing. So, keeping that up. Three weeks in now, and it feels like everything's just building on the last thing, which is nice. Hoping people keep coming back for this kind of thing, not just trying it once." ;
+    tb:status               "confirmed" ;
+    tb:memoryVersionUsed    "business-memory-v2" .
+
+# --- Entry 7: partnership (Rosa's Farm Stand) ---
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-007>
+    a tb:JourneyEntry ;
+    tb:entryId              "entry-007" ;
+    tb:businessId           "neighborhood-table-001" ;
+    tb:entryType            "partnership" ;
+    tb:title                "New supplier partnership: Rosa's Farm Stand" ;
+    tb:description          "Started sourcing root vegetables and herbs from Rosa Alvarez's local farm stand, a few blocks over. Reached via Dave's word-of-mouth referral. Mutually beneficial: Rosa had end-of-season produce she wanted a good home for, The Neighborhood Table got fresher, better-priced ingredients than the grocery store." ;
+    tb:dateOccurred         "2026-09-24"^^xsd:date ;
+    tb:dateRecorded         "2026-09-24"^^xsd:date ;
+    tb:emotionalTone        "warm, mutually beneficial" ;
+    tb:canBeUsedPublicly    true ;
+    tb:contentAngle         "growth signal — word-of-mouth extending beyond customers into a supplier relationship" ;
+    tb:sourceType           "voice-note-transcript" ;
+    tb:sourceReference      "See entry-006 for full transcript" ;
+    tb:status               "confirmed" ;
+    tb:memoryVersionUsed    "business-memory-v3, entry-006" .
+
+# --- Entry 8: content-generated (Week 3 dumplings) ---
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-008>
+    a tb:JourneyEntry ;
+    tb:entryId              "entry-008" ;
+    tb:businessId           "neighborhood-table-001" ;
+    tb:entryType            "content-generated" ;
+    tb:title                "Week 3: Savory Filled Dumplings in Broth" ;
+    tb:description          "Dumplings in broth made from saved Week 2 chicken bones, filled with vegetables and herbs from the new Rosa's Farm Stand partnership, seasoned with dried basil saved from Week 1. Requested by Dave's daughter. First week where nothing was newly bought from scratch — every ingredient traces back to a previous week's memory or the new supplier relationship." ;
+    tb:dateOccurred         "2026-09-24"^^xsd:date ;
+    tb:dateRecorded         "2026-09-24"^^xsd:date ;
+    tb:emotionalTone        "warm, quietly proud" ;
+    tb:canBeUsedPublicly    true ;
+    tb:contentAngle         "craft and continuity — three weeks building on each other, nothing wasted" ;
+    tb:sourceType           "livepeer-agent-generation" ;
+    tb:sourceReference      "PLACEHOLDER-REPLACE-WITH-IMAGE-URL" ;
+    tb:status               "candidate" ;
+    tb:memoryVersionUsed    "business-memory-v3, entry-006, entry-007" ;
+    tb:explainability       "Generated using Business Memory Asset v3 and Journey Ledger entries entry-006 (voice note) and entry-007 (partnership). Dish (dumplings) directly requested by Dave's daughter, per entry-006. Ingredients trace back to entry-004's chicken bones (broth) and entry-001's dried basil (filling seasoning), plus new produce from keyPerson Rosa via the entry-007 partnership. successfulPattern (updated in v3: story-driven posts confirmed across Weeks 1-2) and nextContentStrategy (updated in v3: highlight local relationships) directly shaped this entry's story-first framing, rather than the generic tone-based reasoning used in Week 1. Caption checked against avoidPhrases — none used." .

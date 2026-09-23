@@ -1,0 +1,79 @@
+# ============================================================
+# THREADBIZ AI — BUSINESS MEMORY ASSET — VERSION 3
+# Business: The Neighborhood Table
+# ============================================================
+# Changes from v2: added a new keyPerson (Rosa Alvarez, local supplier —
+# the first supplier-side relationship, not just customers). Updated
+# successfulPattern and nextContentStrategy to reflect two real weeks
+# of data (Weeks 1-2), not just the original v1 assumption.
+# ============================================================
+
+@prefix threadbiz: <https://threadbiz.example/#> .
+@prefix schema: <https://schema.org/> .
+
+# ------------------------------------------------------------
+# MAIN BUSINESS MEMORY RECORD
+# ------------------------------------------------------------
+threadbiz:business-memory a threadbiz:BusinessMemoryAsset ;
+
+  # --- IDENTITY (unchanged from v1/v2) ---
+  threadbiz:businessId "neighborhood-table-001" ;
+  threadbiz:businessName "The Neighborhood Table" ;
+  threadbiz:industry "home-based-weekly-meal-drop" ;
+  threadbiz:location "home-based, no fixed city" ;
+  threadbiz:stage "early" ;
+
+  # --- VOICE & COMMUNICATION (unchanged) ---
+  threadbiz:preferredTone "warm, personal, rooted in family and heritage" ;
+  threadbiz:avoidPhrases "gourmet, chef-inspired, limited time only (overused)" ;
+
+  # --- GOALS (unchanged) ---
+  threadbiz:statedGoals "build a loyal weekly customer base through consistent, high-quality limited pre-order meals" ;
+
+  # --- SEASONAL RHYTHM (unchanged) ---
+  threadbiz:seasonalContext "Weekly cadence year-round; menu shifts with seasonal ingredients; extra demand around major holidays" ;
+
+  # --- CONFIRMED FACTS (unchanged) ---
+  threadbiz:confirmedFact [
+    threadbiz:statement "Started from family heritage recipes, began with a small weekly pre-order drop for neighbors" ;
+    threadbiz:source "owner-voice-note-1" ;
+    threadbiz:confirmedAt "2026-09-21"
+  ] ;
+
+  # --- DISTILLED MEMORY (UPDATED — reflects 2 real weeks of data) ---
+  threadbiz:successfulPattern "Story-driven weekly specials consistently outperform plain menu announcements, confirmed across Weeks 1 and 2 (not just a starting assumption anymore); customer relationships and referrals (Maria -> Dave -> Rosa) are compounding faster than batch-size increases alone can keep up with" ;
+  threadbiz:knownFailure "Generic weekly announcements without a story felt forgettable and got less engagement" ;
+  threadbiz:nextContentStrategy "Always tie the week's menu to a short story or seasonal ingredient note; keep pickup/capacity details clear and consistent; increasingly highlight the local relationships (customers and suppliers) behind each week's ingredients, since that's what's driving real word-of-mouth growth" ;
+
+  # --- VERSION TRACKING (updated) ---
+  threadbiz:version "3" ;
+  threadbiz:updatedAt "2026-09-24" ;
+  threadbiz:previousVersion "2" ;
+  threadbiz:versionChangeNote "Added keyPerson Rosa Alvarez (local produce supplier, first non-customer relationship in the memory record). Updated successfulPattern from a starting assumption to a data-backed pattern confirmed across Weeks 1-2. Updated nextContentStrategy to explicitly highlight local relationships going forward. Learned via owner voice note (Journey Ledger entry-006)." .
+
+# ------------------------------------------------------------
+# KEY PEOPLE
+# ------------------------------------------------------------
+threadbiz:key-person-owner a threadbiz:KeyPerson ;
+  threadbiz:name "Owner" ;
+  threadbiz:role "founder and cook" ;
+  threadbiz:note "cooks all meals personally, manages weekly pre-orders and pickups" ;
+  threadbiz:belongsTo threadbiz:business-memory .
+
+threadbiz:key-person-maria a threadbiz:KeyPerson ;
+  threadbiz:name "Maria T." ;
+  threadbiz:role "returning customer" ;
+  threadbiz:note "Ordered Week 1's soup, requested roast chicken for Week 2. Referred Dave (word-of-mouth)." ;
+  threadbiz:belongsTo threadbiz:business-memory .
+
+threadbiz:key-person-dave a threadbiz:KeyPerson ;
+  threadbiz:name "Dave" ;
+  threadbiz:role "returning customer (referred by Maria)" ;
+  threadbiz:note "Came with his daughter, first ordered Week 2's roast chicken. Mentioned The Neighborhood Table to Rosa, leading to the Week 3 supplier partnership. His daughter requested dumplings for Week 3." ;
+  threadbiz:belongsTo threadbiz:business-memory .
+
+threadbiz:key-person-rosa a threadbiz:KeyPerson ;
+  threadbiz:name "Rosa Alvarez" ;
+  threadbiz:role "local produce supplier (new partnership)" ;
+  threadbiz:note "Runs a small family-run farm stand a few blocks over. Reached out after Dave mentioned The Neighborhood Table to her — had end-of-season root vegetables and herbs she wanted a good home for, rather than selling in bulk to a restaurant. Started supplying Week 3's ingredients at a better price and fresher than the grocery store." ;
+  threadbiz:belongsTo threadbiz:business-memory .
