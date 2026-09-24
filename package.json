@@ -6,8 +6,10 @@
   "description": "Persistent business-memory agent: OriginTrail DKG memory + Livepeer Agent generation and judging.",
   "scripts": {
     "week": "tsx src/run.ts",
-    "writeback": "tsx src/writeback.ts",
     "lessons": "tsx src/lessons.ts",
+    "writeback": "tsx src/writeback.ts",
+    "export-dkg": "tsx src/snapshot.ts export",
+    "seed": "tsx src/snapshot.ts seed",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {

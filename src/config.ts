@@ -40,7 +40,34 @@ export function parseJsonLoose(text: string): any {
   const start = cleaned.indexOf("{");
   const end = cleaned.lastIndexOf("}");
   if (start < 0 || end <= start) throw new Error(`No JSON object found in: ${text.slice(0, 300)}`);
-  return JSON.parse(cleaned.slice(start, end + 1));
+  try {
+    return JSON.parse(cleaned.slice(start, end + 1));
+  } catch (err) {
+    // Models sometimes return two JSON objects, or JSON followed by notes containing braces: use the first complete object.
+    const first = firstBalancedObject(cleaned, start);
+    if (first) return JSON.parse(first);
+    throw err;
+  }
+}
+
+/** The first complete {...} starting at `from`, respecting strings and escapes. */
+function firstBalancedObject(text: string, from: number): string | null {
+  let depth = 0;
+  let inString = false;
+  let escaped = false;
+  for (let i = from; i < text.length; i++) {
+    const ch = text[i];
+    if (inString) {
+      if (escaped) escaped = false;
+      else if (ch === "\\") escaped = true;
+      else if (ch === '"') inString = false;
+      continue;
+    }
+    if (ch === '"') inString = true;
+    else if (ch === "{") depth++;
+    else if (ch === "}" && --depth === 0) return text.slice(from, i + 1);
+  }
+  return null;
 }
 
 /** Case-insensitive whole-phrase search. Returns the phrases that were found. */

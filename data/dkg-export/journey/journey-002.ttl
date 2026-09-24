@@ -1,0 +1,31 @@
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-003> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://threadbiz.ai/ontology#JourneyEntry> .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-003> <https://threadbiz.ai/ontology#businessId> "neighborhood-table-001" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-003> <https://threadbiz.ai/ontology#canBeUsedPublicly> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-003> <https://threadbiz.ai/ontology#contentAngle> "source material — informs Week 2 dish choice, batch size, and keyPeople update" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-003> <https://threadbiz.ai/ontology#dateOccurred> "2026-09-23"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-003> <https://threadbiz.ai/ontology#dateRecorded> "2026-09-23"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-003> <https://threadbiz.ai/ontology#description> "Owner's voice note after finishing Week 1 pickups: mentions a returning customer (Maria) requesting roast chicken, a new customer (Dave, referred by Maria) requesting something heartier, the soup selling out faster than expected, and a reminder to keep leaning into story-driven posts." .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-003> <https://threadbiz.ai/ontology#emotionalTone> "upbeat, encouraged" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-003> <https://threadbiz.ai/ontology#entryId> "entry-003" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-003> <https://threadbiz.ai/ontology#entryType> "candidate-fact" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-003> <https://threadbiz.ai/ontology#memoryVersionUsed> "business-memory-v1" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-003> <https://threadbiz.ai/ontology#sourceReference> "Hey, quick one — just finished the pickups. So Maria came back again, and this time she brought her neighbor Dave and his daughter, first time ordering from us. That's exactly the word-of-mouth thing we want, so that's nice. Maria said she'd love a roast chicken next. And Dave said he wants something heartier now the weather's turning — fair, root veggies are everywhere right now anyway. Oh — and we sold out of the soup way faster than I thought, so let's make more this time. Also let's keep doing the little story behind each dish, that's what's actually working, way more than just posting 'this week's menu.' Keep it warm, simple, like always. Nothing fancy." .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-003> <https://threadbiz.ai/ontology#sourceType> "voice-note-transcript" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-003> <https://threadbiz.ai/ontology#status> "confirmed" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-003> <https://threadbiz.ai/ontology#title> "Owner voice note — after Week 1 deliveries" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-004> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://threadbiz.ai/ontology#JourneyEntry> .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-004> <https://threadbiz.ai/ontology#businessId> "neighborhood-table-001" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-004> <https://threadbiz.ai/ontology#canBeUsedPublicly> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-004> <https://threadbiz.ai/ontology#contentAngle> "customer-requested, bigger batch, word-of-mouth growth" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-004> <https://threadbiz.ai/ontology#dateOccurred> "2026-09-23"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-004> <https://threadbiz.ai/ontology#dateRecorded> "2026-09-23"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-004> <https://threadbiz.ai/ontology#description> "Bigger-batch roast chicken with root vegetables, made in response to Week 1 selling out and Maria's request. First week featuring a new customer relationship (Dave) gained through word-of-mouth referral." .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-004> <https://threadbiz.ai/ontology#emotionalTone> "warm, grateful" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-004> <https://threadbiz.ai/ontology#entryId> "entry-004" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-004> <https://threadbiz.ai/ontology#entryType> "content-generated" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-004> <https://threadbiz.ai/ontology#explainability> "Generated using Business Memory Asset v2 and Journey Ledger entry-003 (owner voice note). Dish choice (roast chicken) directly requested by keyPerson Maria T.; batch size increased in direct response to entry-002's lesson-learned (Week 1 batch was too small) and Dave's request for something heartier. seasonalContext ('menu shifts with seasonal ingredients') supports the shift toward root vegetables as weather turns colder. nextContentStrategy and successfulPattern ('story behind a dish... not just the dish itself') directly shaped the story-driven caption rather than a plain menu post. Caption checked against avoidPhrases — none used. This is also the first content piece generated after Business Memory Asset v1 evolved to v2 (new keyPeople: Maria, Dave)." .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-004> <https://threadbiz.ai/ontology#memoryVersionUsed> "business-memory-v2, entry-003" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-004> <https://threadbiz.ai/ontology#sourceReference> "PLACEHOLDER-REPLACE-WITH-IMAGE-URL" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-004> <https://threadbiz.ai/ontology#sourceType> "livepeer-agent-generation" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-004> <https://threadbiz.ai/ontology#status> "candidate" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-004> <https://threadbiz.ai/ontology#title> "Week 2: Slow-Roasted Chicken with Root Vegetables" .

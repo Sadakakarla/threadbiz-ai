@@ -1,0 +1,24 @@
+<https://threadbiz.example/#business-memory> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://threadbiz.example/#BusinessMemoryAsset> .
+<https://threadbiz.example/#business-memory> <https://threadbiz.example/#avoidPhrases> "gourmet, chef-inspired, limited time only (overused)" .
+<https://threadbiz.example/#business-memory> <https://threadbiz.example/#businessId> "neighborhood-table-001" .
+<https://threadbiz.example/#business-memory> <https://threadbiz.example/#businessName> "The Neighborhood Table" .
+<https://threadbiz.example/#business-memory> <https://threadbiz.example/#confirmedFact> <urn:dkg:ka-skolem:c14n0> .
+<https://threadbiz.example/#business-memory> <https://threadbiz.example/#industry> "home-based-weekly-meal-drop" .
+<https://threadbiz.example/#business-memory> <https://threadbiz.example/#knownFailure> "Generic weekly announcements without a story felt forgettable and got less engagement" .
+<https://threadbiz.example/#business-memory> <https://threadbiz.example/#location> "home-based, no fixed city" .
+<https://threadbiz.example/#business-memory> <https://threadbiz.example/#nextContentStrategy> "Always tie the week's menu to a short story or seasonal ingredient note; keep pickup/capacity details clear and consistent" .
+<https://threadbiz.example/#business-memory> <https://threadbiz.example/#preferredTone> "warm, personal, rooted in family and heritage" .
+<https://threadbiz.example/#business-memory> <https://threadbiz.example/#seasonalContext> "Weekly cadence year-round; menu shifts with seasonal ingredients; extra demand around major holidays" .
+<https://threadbiz.example/#business-memory> <https://threadbiz.example/#stage> "early" .
+<https://threadbiz.example/#business-memory> <https://threadbiz.example/#statedGoals> "build a loyal weekly customer base through consistent, high-quality limited pre-order meals" .
+<https://threadbiz.example/#business-memory> <https://threadbiz.example/#successfulPattern> "Customers respond well when the story behind a dish (whose recipe it is, why it matters) is included, not just the dish itself" .
+<https://threadbiz.example/#business-memory> <https://threadbiz.example/#updatedAt> "2026-09-21" .
+<https://threadbiz.example/#business-memory> <https://threadbiz.example/#version> "1" .
+<https://threadbiz.example/#key-person-owner> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://threadbiz.example/#KeyPerson> .
+<https://threadbiz.example/#key-person-owner> <https://threadbiz.example/#belongsTo> <https://threadbiz.example/#business-memory> .
+<https://threadbiz.example/#key-person-owner> <https://threadbiz.example/#name> "Owner" .
+<https://threadbiz.example/#key-person-owner> <https://threadbiz.example/#note> "cooks all meals personally, manages weekly pre-orders and pickups" .
+<https://threadbiz.example/#key-person-owner> <https://threadbiz.example/#role> "founder and cook" .
+<urn:dkg:ka-skolem:c14n0> <https://threadbiz.example/#confirmedAt> "2026-09-21" .
+<urn:dkg:ka-skolem:c14n0> <https://threadbiz.example/#source> "owner-voice-note-1" .
+<urn:dkg:ka-skolem:c14n0> <https://threadbiz.example/#statement> "Started from family heritage recipes, began with a small weekly pre-order drop for neighbors" .

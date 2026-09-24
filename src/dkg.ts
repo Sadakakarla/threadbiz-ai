@@ -221,12 +221,17 @@ export interface CreatedAsset {
 export async function createKnowledgeAsset(o: { name: string; contextGraph: string; triples: TripleSpec[]; share: boolean }): Promise<CreatedAsset> {
   const triples = uniqueTriples(o.triples);
   if (!triples.length) throw new Error(`Refusing to create ${o.name}: no triples`);
+  return createFromTurtle({ name: o.name, contextGraph: o.contextGraph, turtle: toTurtle(triples), expectedTriples: triples.length, share: o.share });
+}
+
+/** Creates a Knowledge Asset from ready-made Turtle text (used by the seed script, whose snapshots can contain blank nodes). */
+export async function createFromTurtle(o: { name: string; contextGraph: string; turtle: string; expectedTriples: number; share: boolean }): Promise<CreatedAsset> {
   const tmpDir = await mkdtemp(path.join(os.tmpdir(), "threadbiz-ka-"));
   const hostFile = path.join(tmpDir, `${o.name}.ttl`);
   const containerFile = `/tmp/threadbiz-${o.name}-${Date.now()}.ttl`;
   let output: string;
   try {
-    await writeFile(hostFile, toTurtle(triples), "utf8");
+    await writeFile(hostFile, o.turtle, "utf8");
     await docker(["cp", hostFile, `${settings.dkg.container}:${containerFile}`], `docker cp for ${o.name}`);
     const cli = ["exec", settings.dkg.container, "dkg", "ka", "create", o.name, "--context-graph-id", o.contextGraph, "--input-file", containerFile];
     if (o.share) cli.push("--share");
@@ -237,8 +242,8 @@ export async function createKnowledgeAsset(o: { name: string; contextGraph: stri
   }
   const parsed = /Parsed\s+(\d+)\s+quad/i.exec(output);
   const quadsParsed = parsed ? Number(parsed[1]) : null;
-  if (quadsParsed !== null && quadsParsed !== triples.length) {
-    throw new Error(`${o.name}: the node parsed ${quadsParsed} quads but ${triples.length} were written to the file`);
+  if (quadsParsed !== null && quadsParsed !== o.expectedTriples) {
+    throw new Error(`${o.name}: the node parsed ${quadsParsed} quads but ${o.expectedTriples} were written to the file`);
   }
   const status = await kaStatus(o.name, o.contextGraph);
   return { name: o.name, contextGraph: o.contextGraph, kaNumber: String(status.kaNumber ?? ""), status: String(status.status ?? status.memoryLayer ?? ""), quadsParsed };

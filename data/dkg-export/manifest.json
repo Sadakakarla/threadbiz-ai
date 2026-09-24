@@ -1,0 +1,124 @@
+{
+  "about": "Exact snapshot of the ThreadBiz Knowledge Assets in Shared Working Memory. Load with `npm run seed`.",
+  "exportedAt": "2026-09-24T09:16:00.656Z",
+  "businessId": "neighborhood-table-001",
+  "graphs": {
+    "main": "Business Memory + Improvement Memory context graph",
+    "journey": "Journey Ledger context graph"
+  },
+  "assets": [
+    {
+      "name": "business-memory-v1",
+      "graph": "main",
+      "file": "main/business-memory-v1.ttl",
+      "triples": 24,
+      "sha256": "39b4648141a50a3cbdd3dcf1cdca2a14d87bcaa7ac0caa6b390a010e02aec700"
+    },
+    {
+      "name": "business-memory-v2",
+      "graph": "main",
+      "file": "main/business-memory-v2.ttl",
+      "triples": 36,
+      "sha256": "314428cc913a101b8e03cd875483786321a9210daf787ec59716ece480b6300c"
+    },
+    {
+      "name": "business-memory-v3",
+      "graph": "main",
+      "file": "main/business-memory-v3.ttl",
+      "triples": 41,
+      "sha256": "23d6746782f41c696f73b9aa7770d7301d38ad4f6be50ac4b03997c5bfe62683"
+    },
+    {
+      "name": "journey-001",
+      "graph": "journey",
+      "file": "journey/journey-001.ttl",
+      "triples": 46,
+      "sha256": "4b2d7212cd0d8e3564ed96d4a823d8ea274ea31034643bb43e1b135d0945680f"
+    },
+    {
+      "name": "journey-002",
+      "graph": "journey",
+      "file": "journey/journey-002.ttl",
+      "triples": 31,
+      "sha256": "9083c822f0b2b60fe7ee9b25b76abd6a4ad750d19944689a1bf6fc8a42ec4b92"
+    },
+    {
+      "name": "journey-003",
+      "graph": "journey",
+      "file": "journey/journey-003.ttl",
+      "triples": 46,
+      "sha256": "c40d88db6b001684f77a79cb3ebb15ed88c75868766e357da0a523d139d9bf95"
+    },
+    {
+      "name": "improvement-memory-v1",
+      "graph": "main",
+      "file": "main/improvement-memory-v1.ttl",
+      "triples": 21,
+      "sha256": "4783c5bca2486e4ee5c8655b9362b72d53db94083f364562d1366ece0e63e968"
+    },
+    {
+      "name": "improvement-memory-v2",
+      "graph": "main",
+      "file": "main/improvement-memory-v2.ttl",
+      "triples": 29,
+      "sha256": "0049a4c74ae76cf9ab03bb87086acff458eabce5c0991066a768e835564c5b38"
+    },
+    {
+      "name": "improvement-memory-v3",
+      "graph": "main",
+      "file": "main/improvement-memory-v3.ttl",
+      "triples": 45,
+      "sha256": "9c1ddb191e3ebcfcc113a29d877fe61c3d43a0f64c44849918dec70f28b5d86c"
+    },
+    {
+      "name": "improvement-memory-v4",
+      "graph": "main",
+      "file": "main/improvement-memory-v4.ttl",
+      "triples": 61,
+      "sha256": "a29d276ba5306489eb9d0bfd800f7da583cce14ed05348e8ef3a87a74fbc9a54"
+    },
+    {
+      "name": "improvement-memory-v5",
+      "graph": "main",
+      "file": "main/improvement-memory-v5.ttl",
+      "triples": 77,
+      "sha256": "4986e307069de1dfdb6f7a754af81ec1e343bccf94adabbcf332f1e2b7cc1d96"
+    },
+    {
+      "name": "improvement-memory-v6",
+      "graph": "main",
+      "file": "main/improvement-memory-v6.ttl",
+      "triples": 84,
+      "sha256": "7bd857dd2ac4ea06d53b8022a97f949c30f533524221a44c1648f61d264bd57b"
+    },
+    {
+      "name": "journey-entry-009",
+      "graph": "journey",
+      "file": "journey/journey-entry-009.ttl",
+      "triples": 19,
+      "sha256": "5b4d9242f611060e955805fff46cb9fb2bd0285333b9cf1429b4bf7171e14e82"
+    },
+    {
+      "name": "journey-entry-010",
+      "graph": "journey",
+      "file": "journey/journey-entry-010.ttl",
+      "triples": 19,
+      "sha256": "c1d87e63bc55ee98cfaa0710cb9b098abbfa210e8c4b13e68deb671123a235d8"
+    },
+    {
+      "name": "journey-entry-011",
+      "graph": "journey",
+      "file": "journey/journey-entry-011.ttl",
+      "triples": 19,
+      "sha256": "4101c1bf2ec0ddf8b503430d6dc7651382ee07c5fd5395a26c75037ee65d2d4c"
+    },
+    {
+      "name": "journey-entry-012",
+      "graph": "journey",
+      "file": "journey/journey-entry-012.ttl",
+      "triples": 19,
+      "sha256": "b91b7563bfc956b009745243226f477e30f6a3bdaa71ead309d41faa446a837b"
+    }
+  ],
+  "skipped": []
+}

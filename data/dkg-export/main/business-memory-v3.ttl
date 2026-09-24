@@ -1,0 +1,41 @@
+<https://threadbiz.example/#business-memory> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://threadbiz.example/#BusinessMemoryAsset> .
+<https://threadbiz.example/#business-memory> <https://threadbiz.example/#avoidPhrases> "gourmet, chef-inspired, limited time only (overused)" .
+<https://threadbiz.example/#business-memory> <https://threadbiz.example/#businessId> "neighborhood-table-001" .
+<https://threadbiz.example/#business-memory> <https://threadbiz.example/#businessName> "The Neighborhood Table" .
+<https://threadbiz.example/#business-memory> <https://threadbiz.example/#confirmedFact> <urn:dkg:ka-skolem:c14n0> .
+<https://threadbiz.example/#business-memory> <https://threadbiz.example/#industry> "home-based-weekly-meal-drop" .
+<https://threadbiz.example/#business-memory> <https://threadbiz.example/#knownFailure> "Generic weekly announcements without a story felt forgettable and got less engagement" .
+<https://threadbiz.example/#business-memory> <https://threadbiz.example/#location> "home-based, no fixed city" .
+<https://threadbiz.example/#business-memory> <https://threadbiz.example/#nextContentStrategy> "Always tie the week's menu to a short story or seasonal ingredient note; keep pickup/capacity details clear and consistent; increasingly highlight the local relationships (customers and suppliers) behind each week's ingredients, since that's what's driving real word-of-mouth growth" .
+<https://threadbiz.example/#business-memory> <https://threadbiz.example/#preferredTone> "warm, personal, rooted in family and heritage" .
+<https://threadbiz.example/#business-memory> <https://threadbiz.example/#previousVersion> "2" .
+<https://threadbiz.example/#business-memory> <https://threadbiz.example/#seasonalContext> "Weekly cadence year-round; menu shifts with seasonal ingredients; extra demand around major holidays" .
+<https://threadbiz.example/#business-memory> <https://threadbiz.example/#stage> "early" .
+<https://threadbiz.example/#business-memory> <https://threadbiz.example/#statedGoals> "build a loyal weekly customer base through consistent, high-quality limited pre-order meals" .
+<https://threadbiz.example/#business-memory> <https://threadbiz.example/#successfulPattern> "Story-driven weekly specials consistently outperform plain menu announcements, confirmed across Weeks 1 and 2 (not just a starting assumption anymore); customer relationships and referrals (Maria -> Dave -> Rosa) are compounding faster than batch-size increases alone can keep up with" .
+<https://threadbiz.example/#business-memory> <https://threadbiz.example/#updatedAt> "2026-09-24" .
+<https://threadbiz.example/#business-memory> <https://threadbiz.example/#version> "3" .
+<https://threadbiz.example/#business-memory> <https://threadbiz.example/#versionChangeNote> "Added keyPerson Rosa Alvarez (local produce supplier, first non-customer relationship in the memory record). Updated successfulPattern from a starting assumption to a data-backed pattern confirmed across Weeks 1-2. Updated nextContentStrategy to explicitly highlight local relationships going forward. Learned via owner voice note (Journey Ledger entry-006)." .
+<https://threadbiz.example/#key-person-dave> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://threadbiz.example/#KeyPerson> .
+<https://threadbiz.example/#key-person-dave> <https://threadbiz.example/#belongsTo> <https://threadbiz.example/#business-memory> .
+<https://threadbiz.example/#key-person-dave> <https://threadbiz.example/#name> "Dave" .
+<https://threadbiz.example/#key-person-dave> <https://threadbiz.example/#note> "Came with his daughter, first ordered Week 2's roast chicken. Mentioned The Neighborhood Table to Rosa, leading to the Week 3 supplier partnership. His daughter requested dumplings for Week 3." .
+<https://threadbiz.example/#key-person-dave> <https://threadbiz.example/#role> "returning customer (referred by Maria)" .
+<https://threadbiz.example/#key-person-maria> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://threadbiz.example/#KeyPerson> .
+<https://threadbiz.example/#key-person-maria> <https://threadbiz.example/#belongsTo> <https://threadbiz.example/#business-memory> .
+<https://threadbiz.example/#key-person-maria> <https://threadbiz.example/#name> "Maria T." .
+<https://threadbiz.example/#key-person-maria> <https://threadbiz.example/#note> "Ordered Week 1's soup, requested roast chicken for Week 2. Referred Dave (word-of-mouth)." .
+<https://threadbiz.example/#key-person-maria> <https://threadbiz.example/#role> "returning customer" .
+<https://threadbiz.example/#key-person-owner> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://threadbiz.example/#KeyPerson> .
+<https://threadbiz.example/#key-person-owner> <https://threadbiz.example/#belongsTo> <https://threadbiz.example/#business-memory> .
+<https://threadbiz.example/#key-person-owner> <https://threadbiz.example/#name> "Owner" .
+<https://threadbiz.example/#key-person-owner> <https://threadbiz.example/#note> "cooks all meals personally, manages weekly pre-orders and pickups" .
+<https://threadbiz.example/#key-person-owner> <https://threadbiz.example/#role> "founder and cook" .
+<https://threadbiz.example/#key-person-rosa> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://threadbiz.example/#KeyPerson> .
+<https://threadbiz.example/#key-person-rosa> <https://threadbiz.example/#belongsTo> <https://threadbiz.example/#business-memory> .
+<https://threadbiz.example/#key-person-rosa> <https://threadbiz.example/#name> "Rosa Alvarez" .
+<https://threadbiz.example/#key-person-rosa> <https://threadbiz.example/#note> "Runs a small family-run farm stand a few blocks over. Reached out after Dave mentioned The Neighborhood Table to her — had end-of-season root vegetables and herbs she wanted a good home for, rather than selling in bulk to a restaurant. Started supplying Week 3's ingredients at a better price and fresher than the grocery store." .
+<https://threadbiz.example/#key-person-rosa> <https://threadbiz.example/#role> "local produce supplier (new partnership)" .
+<urn:dkg:ka-skolem:c14n0> <https://threadbiz.example/#confirmedAt> "2026-09-21" .
+<urn:dkg:ka-skolem:c14n0> <https://threadbiz.example/#source> "owner-voice-note-1" .
+<urn:dkg:ka-skolem:c14n0> <https://threadbiz.example/#statement> "Started from family heritage recipes, began with a small weekly pre-order drop for neighbors" .

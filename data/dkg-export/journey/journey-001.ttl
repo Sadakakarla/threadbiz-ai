@@ -1,0 +1,46 @@
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-000> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://threadbiz.ai/ontology#JourneyEntry> .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-000> <https://threadbiz.ai/ontology#businessId> "neighborhood-table-001" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-000> <https://threadbiz.ai/ontology#canBeUsedPublicly> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-000> <https://threadbiz.ai/ontology#contentAngle> "origin story — internal source material" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-000> <https://threadbiz.ai/ontology#dateOccurred> "2026-09-21"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-000> <https://threadbiz.ai/ontology#dateRecorded> "2026-09-21"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-000> <https://threadbiz.ai/ontology#description> "Owner's original voice note announcing the business, its name, and its purpose. This is the source behind Business Memory Asset v1's confirmedFact (source: owner-voice-note-1, confirmed 2026-09-21)." .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-000> <https://threadbiz.ai/ontology#emotionalTone> "excited, hopeful" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-000> <https://threadbiz.ai/ontology#entryId> "entry-000" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-000> <https://threadbiz.ai/ontology#entryType> "candidate-fact" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-000> <https://threadbiz.ai/ontology#memoryVersionUsed> "business-memory-v1" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-000> <https://threadbiz.ai/ontology#sourceReference> "Hey! Okay, so — I'm finally doing this. I'm calling it The Neighborhood Table. Basically, every week, I'm gonna cook a small batch of meals using my family's recipes — the ones my mom used to make — and drop them off for a few neighbors to try, pre-order style. I do all the cooking myself, so it's staying small for now, just me in the kitchen. The whole point is I want people to actually look forward to it every week, you know? Not just a random meal, something they trust, something that feels like it's made by someone who cares. Starting tiny, but excited to see where this goes." .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-000> <https://threadbiz.ai/ontology#sourceType> "voice-note-transcript" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-000> <https://threadbiz.ai/ontology#status> "confirmed" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-000> <https://threadbiz.ai/ontology#title> "Origin voice note — starting The Neighborhood Table" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-001> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://threadbiz.ai/ontology#JourneyEntry> .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-001> <https://threadbiz.ai/ontology#businessId> "neighborhood-table-001" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-001> <https://threadbiz.ai/ontology#canBeUsedPublicly> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-001> <https://threadbiz.ai/ontology#contentAngle> "honest small-batch launch story" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-001> <https://threadbiz.ai/ontology#dateOccurred> "2026-09-22"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-001> <https://threadbiz.ai/ontology#dateRecorded> "2026-09-22"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-001> <https://threadbiz.ai/ontology#description> "Launched The Neighborhood Table with a modest batch of vegetable and herb soup, made from the last of the season's tomatoes. Honest, small-batch, 'just starting out' framing rather than an oversold launch." .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-001> <https://threadbiz.ai/ontology#emotionalTone> "warm, humble" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-001> <https://threadbiz.ai/ontology#entryId> "entry-001" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-001> <https://threadbiz.ai/ontology#entryType> "launch" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-001> <https://threadbiz.ai/ontology#explainability> "Generated using Business Memory Asset v1 and Journey Ledger entry-000 (origin voice note). Directly draws on the confirmedFact (sourced from owner-voice-note-1, confirmed 2026-09-21): 'started from family heritage recipes, began with a small weekly pre-order drop for neighbors.' preferredTone='warm, personal, rooted in family and heritage' shaped the humble visual and caption style. seasonalContext ('menu shifts with seasonal ingredients') drove the choice of a late-tomato-season soup. Caption checked against avoidPhrases (gourmet, chef-inspired, limited time only) — none used." .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-001> <https://threadbiz.ai/ontology#memoryVersionUsed> "business-memory-v1, entry-000" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-001> <https://threadbiz.ai/ontology#sourceReference> "https://v3b.fal.media/files/b/0aab856c/rAW-B_aLyEwss-bZm29R_.jpg" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-001> <https://threadbiz.ai/ontology#sourceType> "livepeer-agent-generation" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-001> <https://threadbiz.ai/ontology#status> "confirmed" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-001> <https://threadbiz.ai/ontology#title> "First week: Vegetable & Herb Soup" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-002> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://threadbiz.ai/ontology#JourneyEntry> .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-002> <https://threadbiz.ai/ontology#businessId> "neighborhood-table-001" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-002> <https://threadbiz.ai/ontology#canBeUsedPublicly> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-002> <https://threadbiz.ai/ontology#contentAngle> "internal — informs Week 2 batch size decision" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-002> <https://threadbiz.ai/ontology#dateOccurred> "2026-09-22"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-002> <https://threadbiz.ai/ontology#dateRecorded> "2026-09-22"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-002> <https://threadbiz.ai/ontology#description> "Week 1's soup batch sold out faster than expected. Lesson: increase batch size for Week 2 based on real demand signal rather than guessing again." .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-002> <https://threadbiz.ai/ontology#emotionalTone> "encouraged" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-002> <https://threadbiz.ai/ontology#entryId> "entry-002" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-002> <https://threadbiz.ai/ontology#entryType> "lesson-learned" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-002> <https://threadbiz.ai/ontology#memoryVersionUsed> "business-memory-v1" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-002> <https://threadbiz.ai/ontology#sourceReference> "owner-observation:week1-batch-sellout" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-002> <https://threadbiz.ai/ontology#sourceType> "owner-note" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-002> <https://threadbiz.ai/ontology#status> "confirmed" .
+<https://threadbiz.ai/journey/neighborhood-table-001/entry-002> <https://threadbiz.ai/ontology#title> "Batch size too small for demand" .

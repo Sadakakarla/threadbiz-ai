@@ -1,0 +1,29 @@
+<https://threadbiz.example/#improvement-memory> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://threadbiz.example/#ImprovementMemoryAsset> .
+<https://threadbiz.example/#improvement-memory> <https://threadbiz.example/#businessId> "neighborhood-table-001" .
+<https://threadbiz.example/#improvement-memory> <https://threadbiz.example/#lesson> <https://threadbiz.example/#lesson-001> .
+<https://threadbiz.example/#improvement-memory> <https://threadbiz.example/#previousVersion> "1" .
+<https://threadbiz.example/#improvement-memory> <https://threadbiz.example/#updatedAt> "2026-09-24" .
+<https://threadbiz.example/#improvement-memory> <https://threadbiz.example/#version> "2" .
+<https://threadbiz.example/#improvement-memory> <https://threadbiz.example/#versionChangeNote> "Recorded another owner rejection (run entry-000-20260924T062646) of the same rule, lesson-001; now seen 2 times." .
+<https://threadbiz.example/#lesson-001-occurrence-1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://threadbiz.example/#LessonOccurrence> .
+<https://threadbiz.example/#lesson-001-occurrence-1> <https://threadbiz.example/#ownerReason> "Don't say a dish recipe is passed down through generations unless my note says so." .
+<https://threadbiz.example/#lesson-001-occurrence-1> <https://threadbiz.example/#recordedAt> "2026-09-24T06:20:16.653Z" .
+<https://threadbiz.example/#lesson-001-occurrence-1> <https://threadbiz.example/#rejectedCaption> "From our very first drop, I wanted to share dishes that felt like coming home. This week, we're making a small batch of vegetable and herb soup, using the last of the season's tomatoes, fresh parsley, and basil. It's a recipe passed down through generations, full of simple goodness. Place your pre-order today." .
+<https://threadbiz.example/#lesson-001-occurrence-1> <https://threadbiz.example/#rejectedImage> "https://agent.livepeer.org/a/aHR0cHM6Ly83eTRmbHpwdWxndjRjbzZyLnB1YmxpYy5ibG9iLnZlcmNlbC1zdG9yYWdlLmNvbS91cGxvYWRzLzE3OTAyMzA1MDUyNDktbno3dXR3LmpwZWc.f8b4ab8c0417fec4/1790230505249-nz7utw.jpeg" .
+<https://threadbiz.example/#lesson-001-occurrence-1> <https://threadbiz.example/#runId> "entry-000-20260924T061434" .
+<https://threadbiz.example/#lesson-001-occurrence-2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://threadbiz.example/#LessonOccurrence> .
+<https://threadbiz.example/#lesson-001-occurrence-2> <https://threadbiz.example/#ownerReason> "Don't mention a grandmother or say the recipe has been in the family for generations unless my note says so." .
+<https://threadbiz.example/#lesson-001-occurrence-2> <https://threadbiz.example/#recordedAt> "2026-09-24T06:31:15.672Z" .
+<https://threadbiz.example/#lesson-001-occurrence-2> <https://threadbiz.example/#rejectedCaption> "Our first weekly offering, a hearty vegetable and herb soup, uses up the very last of this season's tomatoes, just like my grandmother used to do. It’s a recipe that’s been in our family for generations, a comforting taste of home. We're so happy to share it with you. Please pre-order for your bowl." .
+<https://threadbiz.example/#lesson-001-occurrence-2> <https://threadbiz.example/#rejectedImage> "https://agent.livepeer.org/a/aHR0cHM6Ly83eTRmbHpwdWxndjRjbzZyLnB1YmxpYy5ibG9iLnZlcmNlbC1zdG9yYWdlLmNvbS91cGxvYWRzLzE3OTAyMzEyMjg1ODUta2hzZThiLmpwZWc.966980aa743a19a6/1790231228585-khse8b.jpeg" .
+<https://threadbiz.example/#lesson-001-occurrence-2> <https://threadbiz.example/#runId> "entry-000-20260924T062646" .
+<https://threadbiz.example/#lesson-001> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://threadbiz.example/#OwnerLesson> .
+<https://threadbiz.example/#lesson-001> <https://threadbiz.example/#firstRecordedAt> "2026-09-24T06:20:16.653Z" .
+<https://threadbiz.example/#lesson-001> <https://threadbiz.example/#lastRecordedAt> "2026-09-24T06:31:15.672Z" .
+<https://threadbiz.example/#lesson-001> <https://threadbiz.example/#lessonId> "lesson-001" .
+<https://threadbiz.example/#lesson-001> <https://threadbiz.example/#occurrence> <https://threadbiz.example/#lesson-001-occurrence-1> .
+<https://threadbiz.example/#lesson-001> <https://threadbiz.example/#occurrence> <https://threadbiz.example/#lesson-001-occurrence-2> .
+<https://threadbiz.example/#lesson-001> <https://threadbiz.example/#occurrenceCount> "2"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://threadbiz.example/#lesson-001> <https://threadbiz.example/#rule> "Don't mention a grandmother or say the recipe has been in the family for generations unless my note says so." .
+<https://threadbiz.example/#lesson-001> <https://threadbiz.example/#source> "owner-rejection" .
+<https://threadbiz.example/#lesson-001> <https://threadbiz.example/#status> "confirmed" .
