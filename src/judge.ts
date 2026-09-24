@@ -114,9 +114,9 @@ export async function judgeImage(imageUrl: string, brief: Brief, ownerNote: stri
     "You are a strict photo editor reviewing an image for a small home-based food business's social media post. Judge only what you can actually see.",
     `INTENDED DISH (from the owner): ${ownerNote || "(not specified)"}`,
     `CAPTION THAT WILL ACCOMPANY IT: "${brief.caption}"`,
-    "FIRST, list every ingredient named in the INTENDED DISH, including what the base is made of (for example a tomato broth), and say whether each is actually visible in the image.",
+    "FIRST, list every FOOD ingredient named in the INTENDED DISH, including what the base is made of (for example a tomato broth), and say whether each is actually visible in the image. Mark as \"n/a\" (not \"no\") any ingredient that could never be seen in a finished dish: things used up in cooking, such as bones used to make a broth, dried seasonings or spices, and fillings hidden inside dumplings. Do not list containers, bowls, or other non-food items as ingredients.",
     `THEN answer the criteria:\n${rubricText(rubric)}`,
-    'Return ONLY a JSON object, no markdown: {"ingredients": [{"name": "<ingredient>", "visible": "yes" | "partly" | "no", "note": "<what you see>"}], "criteria": [{"id": "<criterion id>", "verdict": "yes" | "partly" | "no", "reason": "<one sentence describing what you actually observed>"}]}',
+    'Return ONLY a JSON object, no markdown: {"ingredients": [{"name": "<ingredient>", "visible": "yes" | "partly" | "no" | "n/a", "note": "<what you see>"}], "criteria": [{"id": "<criterion id>", "verdict": "yes" | "partly" | "no", "reason": "<one sentence describing what you actually observed>"}]}',
   ].join("\n\n");
   const { report, parsed } = await runJudge("judge:image", settings.livepeer.imageJudge, prompt, rubric, sessionId, { image_url: imageUrl });
   if (report.status !== "ok") return report;

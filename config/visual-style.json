@@ -1,12 +1,14 @@
 {
-  "about": "Product-level defaults learned from testing image models. These apply to every business using ThreadBiz. Business-specific facts (tone, avoided phrases, people) live in the Business Memory Asset on the DKG, not here.",
-  "photoStyleSuffix": "Shot on an ordinary smartphone camera, natural window light, slightly flat and unedited, muted realistic colors, candid documentary feel, not professionally lit or styled. No text, no logos, no overlay.",
+  "about": "Product-level defaults learned from testing image models. These apply to every business using ThreadBiz. Goal: photos that look like a home cook running a small weekly pre-order business took them on their phone, not food-magazine shots. Business-specific facts (tone, avoided phrases, people) live in the Business Memory Asset on the DKG, not here.",
+  "photoStyleSuffix": "Shot on an ordinary smartphone camera at a normal standing angle, natural window light, slightly flat and unedited, muted realistic colors, the whole scene in ordinary focus like a quick phone snapshot, food served as it came out of the pot, candid documentary feel, not professionally lit or styled. No text, no logos, no overlay.",
   "imagePromptRules": [
-    "Describe ONLY the scene: the dish, where it sits, and a few everyday details. Do not describe camera, lighting, or photo style; a fixed photo-style sentence is added automatically after your description.",
-    "Include EVERY ingredient named in this week's owner note, including what the base is made of (e.g. 'a tomato-based broth'), and name them concretely (e.g. 'sliced carrots, diced potatoes'), never vague words like 'vegetables' alone.",
-    "Keep the setting humble and lived-in: a home kitchen counter or wooden table, an ordinary or slightly worn bowl, a used dish towel. No carefully placed props, no extra styled dishes in the background, no restaurant plating or catering trays.",
-    "No readable text, words, logos, or brand names anywhere. Handwritten-style tags or labels are allowed only if their text is not specified.",
-    "People: only include a person if Business Memory provides a visual description of them. If a person appears, they are caught mid-task, not looking at the camera, with off-center, slightly wider framing rather than a portrait."
+    "Describe ONLY the scene: the dish, where it sits, and a few everyday details. Do not describe camera, lighting, focus, or photo style; a fixed photo-style sentence is added automatically after your description.",
+    "Include EVERY ingredient named in this week's owner note, including what the base is made of (e.g. 'a tomato-based broth'), and name them concretely (e.g. 'sliced carrots, diced potatoes'), never vague words like 'vegetables' alone. The dish and its named ingredients must stay the clear main subject and fill most of the frame.",
+    "Show the food the way a home cook actually serves it: spooned or ladled in without arranging, uneven pieces, a few drips on the rim, no single herb sprig or leaf placed on top, no sauce swirls or restaurant plating.",
+    "Keep the setting a real, lived-in home kitchen: an ordinary or slightly worn bowl, pot or baking dish, a wooden table or counter with small signs of use (a crumb, a spoon resting nearby, a used dish towel). No carefully placed props, no fresh herb bunches or extra dishes arranged in the background, no catering trays.",
+    "ALWAYS show the batch being packed for this week's pre-orders, right next to the dish in the same frame: three or four clear plastic round deli containers with their lids, some already filled with the same food and lidded, one open and being filled. Describe it concretely (how many, where). They must clearly read as takeout containers, not bowls. Never put labels, tags, stickers, writing, or printed packaging on them.",
+    "No readable text, words, logos, or brand names anywhere.",
+    "People: ALWAYS show the owner at work, but only from the chest down with the face out of frame: the torso in a plain dark grey apron and both hands caught mid-task, ladling or spooning the food from the pot or dish into the open takeout container. Plain sleeves, no jewelry. The owner must look the same every time (same plain dark grey apron). Never show faces, customers, or other people."
   ],
   "bannedPromptWords": [
     "vibrant",
@@ -42,6 +44,14 @@
     {
       "id": "matches-caption",
       "question": "Does the image match what the caption describes?"
+    },
+    {
+      "id": "business-signal",
+      "question": "Is it clearly visible that food is being packed for pickup, such as several takeout containers with lids next to the dish? Answer yes if clearly visible, partly if present but small, partly hidden, or looking more like bowls than containers, no only if there is no such sign at all."
+    },
+    {
+      "id": "owner-at-work",
+      "question": "Is a person visible at work (hands and/or an apron, for example ladling or packing food) WITHOUT their face showing? Answer yes if hands or apron are clearly visible mid-task and no face is visible, partly if only a small part of a hand or arm is visible, no if there is no person at all OR if a face is visible."
     }
   ]
 }

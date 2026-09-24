@@ -20,6 +20,7 @@ import { approveEntry, explain, planEntry, rejectEntry, stageCandidate, type Ent
  * Flow: read Business Memory + the journey entry + the latest Improvement Memory from the DKG -> write brief
  * (following the owner's lessons) -> generate image -> judge (including one dedicated check per lesson).
  * On a FAIL, one targeted revision. Then the owner decides:
+ * --caption "..." keeps a caption from an earlier run and regenerates only the image (the caption is still judged).
  *   approve -> the post is written to the DKG as its own sealed journey entry (candidate draft -> confirmed, shared)
  *   reject  -> the draft is discarded and the owner's reason becomes the next Improvement Memory version.
  * --no-dkg-write keeps the whole run read-only (no candidate draft, no lesson, no entry).
@@ -47,6 +48,14 @@ const ownerNote = args.note ?? "";
 const stopAfter = args["stop-after"];
 const allowRetry = args["no-retry"] !== "true";
 const writesEnabled = args["no-dkg-write"] !== "true";
+/** --caption "...": keep a caption from an earlier run (e.g. only the image needed redoing). Judges still check it. */
+const fixedCaption = args.caption && args.caption !== "true" ? args.caption.trim() : undefined;
+/** --image-url "...": reuse an image an earlier pipeline run generated (agent.livepeer.org URL) instead of generating a new one. Judges still check it. */
+const fixedImageUrl = args["image-url"] && args["image-url"] !== "true" ? args["image-url"].trim() : undefined;
+if (fixedImageUrl && !/^https:\/\/agent\.livepeer\.org\//.test(fixedImageUrl)) {
+  console.error("--image-url must be a persisted image URL from an earlier pipeline run (https://agent.livepeer.org/...)");
+  process.exit(1);
+}
 
 const stamp = new Date().toISOString().replace(/[-:]/g, "").replace(/\..+/, "");
 const runId = `${args.entry}-${stamp}`;
@@ -96,9 +105,20 @@ function printBrief(b: Brief) {
 
 async function makeImage(scene: string, round: number) {
   const prompt = withPhotoStyle(scene);
-  const image = await step(`round ${round}: generate image with ${settings.livepeer.imageModel}`, () =>
-    generateImage(`image:round${round}`, prompt, sessionId, `${sessionId}-image-r${round}`)
-  );
+  const image = fixedImageUrl
+    ? {
+        url: fixedImageUrl,
+        urlPath: "reused",
+        allUrls: [{ path: "reused", url: fixedImageUrl }],
+        requestedCapability: "(reused image from an earlier pipeline run)",
+        capabilityThatRan: "(none: image reused, not regenerated)",
+        providerModel: null as string | null,
+        fallbackInfo: {} as Record<string, unknown>,
+        cost: 0,
+      }
+    : await step(`round ${round}: generate image with ${settings.livepeer.imageModel}`, () =>
+        generateImage(`image:round${round}`, prompt, sessionId, `${sessionId}-image-r${round}`)
+      );
   totalCost += image.cost;
   const bytes = Buffer.from(await (await fetch(image.url)).arrayBuffer());
   const size = imageSize(bytes);
@@ -211,6 +231,14 @@ async function main() {
     ownerNote,
   };
   run.memorySnapshot = mem.memory;
+  if (fixedCaption) {
+    run.inputs.captionKeptByOwner = fixedCaption;
+    console.log(`Caption: kept by the owner from an earlier run (--caption)${fixedImageUrl ? "" : "; only the image is regenerated"}. The caption is still judged.`);
+  }
+  if (fixedImageUrl) {
+    run.inputs.imageKeptByOwner = fixedImageUrl;
+    console.log("Image: kept by the owner from an earlier run (--image-url); it is not regenerated. The image is still judged.");
+  }
   console.log(`\nMemory ${mem.asset.name}: ${mem.asset.tripleCount} triples from KA #${mem.asset.kaNumber}`);
   console.log(`Entry ${args.entry}: ${input.isPrivate ? "PRIVATE" : "public"}, ${input.text.length} chars`);
   if (improvement.asset) {
@@ -226,7 +254,7 @@ async function main() {
 
   // ---- Round 1 ----
   console.log("\n=== ROUND 1 ===");
-  const brief1: BriefResult = await step(`round 1: write brief with ${settings.livepeer.writer}`, () => writeBrief(mem, input, ownerNote, lessons, sessionId, 1));
+  const brief1: BriefResult = await step(`round 1: write brief with ${settings.livepeer.writer}`, () => writeBrief(mem, input, ownerNote, lessons, sessionId, 1, undefined, fixedCaption));
   totalCost += brief1.cost;
   printBrief(brief1.brief);
   printLessonUse(brief1, lessons);
@@ -243,18 +271,22 @@ async function main() {
 
   // ---- Round 2: one targeted revision, only on a clear FAIL ----
   const failures = collectFailures(judging1.image, judging1.caption);
-  if (judging1.overall === "fail" && allowRetry && failures.length) {
+  const revisable = failures.filter((f) => !(fixedCaption && f.part === "caption") && !(fixedImageUrl && f.part === "image"));
+  if (judging1.overall === "fail" && allowRetry && (fixedCaption || fixedImageUrl) && failures.length && !revisable.length) {
+    console.log("\n  No automatic revision: only the owner-kept caption/image was flagged, and it is not changed automatically. You decide.");
+  }
+  if (judging1.overall === "fail" && allowRetry && revisable.length) {
     const revision: Revision = {
       previous: brief1.brief,
-      failures,
-      captionMayChange: failures.some((f) => f.part === "caption"),
-      imagePromptMayChange: failures.some((f) => f.part === "image"),
+      failures: revisable,
+      captionMayChange: revisable.some((f) => f.part === "caption"),
+      imagePromptMayChange: revisable.some((f) => f.part === "image"),
     };
     const redo = [revision.captionMayChange && "caption", revision.imagePromptMayChange && "image"].filter(Boolean).join(" + ");
     console.log(`\n=== ROUND 2: targeted revision of ${redo} ===`);
-    for (const f of failures) console.log(`  feedback [${f.part}] ${f.id}: ${f.reason}`);
+    for (const f of revisable) console.log(`  feedback [${f.part}] ${f.id}: ${f.reason}`);
 
-    const brief2 = await step(`round 2: revise with ${settings.livepeer.writer}`, () => writeBrief(mem, input, ownerNote, lessons, sessionId, 2, revision));
+    const brief2 = await step(`round 2: revise with ${settings.livepeer.writer}`, () => writeBrief(mem, input, ownerNote, lessons, sessionId, 2, revision, fixedCaption));
     totalCost += brief2.cost;
     printBrief(brief2.brief);
     printLessonUse(brief2, lessons);

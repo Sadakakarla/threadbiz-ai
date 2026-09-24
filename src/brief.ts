@@ -141,9 +141,14 @@ export async function writeBrief(
   lessons: Lesson[],
   sessionId: string,
   round: number,
-  revision?: Revision
+  revision?: Revision,
+  /** Caption the owner chose to keep from an earlier run. The writer only writes the image scene; code enforces the caption. */
+  fixedCaption?: string
 ): Promise<BriefResult> {
-  const basePrompt = buildBriefPrompt(mem, input, ownerNote, lessons) + (revision ? `\n\n${revisionBlock(revision)}` : "");
+  const fixedBlock = fixedCaption
+    ? `\n\nFIXED CAPTION: The owner has already approved this caption and it must not change. Put it in "caption" exactly as written, and write the imagePrompt so the scene matches it:\n"${fixedCaption}"`
+    : "";
+  const basePrompt = buildBriefPrompt(mem, input, ownerNote, lessons) + fixedBlock + (revision ? `\n\n${revisionBlock(revision)}` : "");
   const active = activeLessons(lessons);
   const attempts: BriefResult["attempts"] = [];
   let prompt = basePrompt;
@@ -165,6 +170,7 @@ export async function writeBrief(
         if (!revision.captionMayChange) parsed.caption = revision.previous.caption;
         if (!revision.imagePromptMayChange) parsed.imagePrompt = revision.previous.imagePrompt;
       }
+      if (!hard.length && fixedCaption) parsed.caption = fixedCaption;
       if (!hard.length) {
         const cta = ensureOrderInvitation(parsed.caption);
         parsed.caption = cta.caption;
