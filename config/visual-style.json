@@ -1,0 +1,47 @@
+{
+  "about": "Product-level defaults learned from testing image models. These apply to every business using ThreadBiz. Business-specific facts (tone, avoided phrases, people) live in the Business Memory Asset on the DKG, not here.",
+  "photoStyleSuffix": "Shot on an ordinary smartphone camera, natural window light, slightly flat and unedited, muted realistic colors, candid documentary feel, not professionally lit or styled. No text, no logos, no overlay.",
+  "imagePromptRules": [
+    "Describe ONLY the scene: the dish, where it sits, and a few everyday details. Do not describe camera, lighting, or photo style; a fixed photo-style sentence is added automatically after your description.",
+    "Include EVERY ingredient named in this week's owner note, including what the base is made of (e.g. 'a tomato-based broth'), and name them concretely (e.g. 'sliced carrots, diced potatoes'), never vague words like 'vegetables' alone.",
+    "Keep the setting humble and lived-in: a home kitchen counter or wooden table, an ordinary or slightly worn bowl, a used dish towel. No carefully placed props, no extra styled dishes in the background, no restaurant plating or catering trays.",
+    "No readable text, words, logos, or brand names anywhere. Handwritten-style tags or labels are allowed only if their text is not specified.",
+    "People: only include a person if Business Memory provides a visual description of them. If a person appears, they are caught mid-task, not looking at the camera, with off-center, slightly wider framing rather than a portrait."
+  ],
+  "bannedPromptWords": [
+    "vibrant",
+    "bright",
+    "vivid",
+    "rich",
+    "glossy",
+    "golden",
+    "warm colors",
+    "stunning",
+    "gourmet",
+    "cinematic",
+    "studio lighting",
+    "professional photography"
+  ],
+  "imageRubric": [
+    {
+      "id": "looks-real",
+      "question": "Does this look like a casual photo a home cook took on their phone? Answer yes only if it genuinely does. Answer partly if it looks somewhat styled or polished (for example staged props, spotless surfaces, a blurred background with extra dishes, magazine-like garnish, very saturated color) but is still acceptable. Answer no only if it is clearly a professional studio or stock photo, or obviously artificial."
+    },
+    {
+      "id": "right-subject",
+      "question": "Does the image clearly show the intended dish, with the named ingredients recognizable (not ambiguous shapes)?"
+    },
+    {
+      "id": "brand-fit",
+      "question": "Does it feel homemade and humble, like a small home kitchen, rather than restaurant plating or commercial catering?"
+    },
+    {
+      "id": "no-text",
+      "question": "Is the image free of readable words, logos, and garbled lettering?"
+    },
+    {
+      "id": "matches-caption",
+      "question": "Does the image match what the caption describes?"
+    }
+  ]
+}

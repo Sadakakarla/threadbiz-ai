@@ -11,3 +11,7 @@ docker-volumes/
 volumes/
 **/volumes/
 .DS_Store
+node_modules/
+runs/
+.mcp.json.bak
+.claude/settings.local.json

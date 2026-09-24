@@ -1,0 +1,21 @@
+{
+  "businessId": "neighborhood-table-001",
+  "dkg": {
+    "container": "threadbiz-dkg-node",
+    "memoryContextGraph": "0x227eF1dfc442FC4705216D0B71F412938Ae9311e/threadbiz-main",
+    "journeyContextGraph": "0x227eF1dfc442FC4705216D0B71F412938Ae9311e/threadbiz-journey"
+  },
+  "livepeer": {
+    "endpoint": "https://agent.livepeer.org/api/mcp",
+    "writer": "gemini-text",
+    "imageModel": "flux-dev",
+    "imageJudge": "nemotron-omni-vision",
+    "captionJudge": "gemini-text",
+    "persistImages": true,
+    "expectedImageSize": {
+      "width": 1024,
+      "height": 768
+    }
+  },
+  "orderInvitationFallback": "Pre-orders are open now for this week's small batch."
+}

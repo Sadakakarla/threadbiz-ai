@@ -1,0 +1,16 @@
+{
+  "name": "threadbiz-ai",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Persistent business-memory agent: OriginTrail DKG memory + Livepeer Agent generation and judging.",
+  "scripts": {
+    "week": "tsx src/run.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}

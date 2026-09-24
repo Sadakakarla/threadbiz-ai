@@ -10,6 +10,15 @@
         "X-Livepeer-Agent-Tool-Profile: lean"
       ],
       "env": {}
+    },
+    "livepeer-general": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "mcp-remote",
+        "https://agent.livepeer.org/api/mcp"
+      ],
+      "env": {}
     }
   }
 }
