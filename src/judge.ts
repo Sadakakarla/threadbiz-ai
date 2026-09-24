@@ -1,6 +1,7 @@
 import { asText, findPhrases, parseJsonLoose, settings, splitPhraseList, visualStyle } from "./config.ts";
 import { costOf, runCapability } from "./livepeer.ts";
 import type { Brief, Failure } from "./brief.ts";
+import { activeLessons, lessonRuleText, type Lesson } from "./improvement.ts";
 import type { LoadedEntry, LoadedMemory } from "./memory.ts";
 
 export type Verdict = "yes" | "partly" | "no" | "unparseable";
@@ -130,8 +131,62 @@ export async function judgeImage(imageUrl: string, brief: Brief, ownerNote: stri
   return report;
 }
 
-export async function judgeCaption(brief: Brief, mem: LoadedMemory, input: LoadedEntry, ownerNote: string, sessionId: string): Promise<JudgeReport> {
+/**
+ * One dedicated, narrow check per owner lesson. It is a separate call from the general caption judge
+ * on purpose: the general judge decides for itself which claims to list and can skip one, but this
+ * call asks only "does the caption break THIS rule?" and must quote the offending words.
+ * Code cross-checks the answer: if the judge says "no violation" while quoting words that really are
+ * in the caption, the judge contradicted itself and the lesson is treated as broken.
+ */
+async function judgeLesson(lesson: Lesson, caption: string, ownerNote: string, sessionId: string): Promise<{ criterion: Criterion; cost: number; detail: Record<string, unknown> }> {
+  const capability = settings.livepeer.captionJudge;
+  const checkedBy = `${capability} (dedicated lesson check)`;
+  const prompt = [
+    "You are a strict editor checking ONE rule that the business owner set, against a social media caption.",
+    `OWNER'S RULE: ${lessonRuleText(lesson)}`,
+    `CAPTION:\n"${caption}"`,
+    `THIS WEEK'S OWNER NOTE (the only thing that can make an exception to the rule):\n${ownerNote || "(none)"}`,
+    "QUESTION: Does the caption state or imply anything the rule forbids? Look for paraphrases and closely related wording, not just the exact words of the rule. If the owner note explicitly says the thing the rule forbids, it is allowed.",
+    'Return ONLY a JSON object, no markdown: {"breaksRule": true | false, "quotes": ["<exact words copied from the caption that break the rule>"], "reason": "<one sentence>"}. If the rule is not broken, quotes must be an empty list.',
+  ].join("\n\n");
+  try {
+    const data = await runCapability({ label: `judge:lesson:${lesson.id}`, capability, prompt, timeout: 60, sessionId });
+    const parsed = parseJsonLoose(String(data?.result?.text ?? data?.text ?? ""));
+    const flag = String(parsed?.breaksRule).toLowerCase().trim();
+    if (flag !== "true" && flag !== "false") throw new Error("judge did not answer breaksRule with true or false");
+    const quotes: string[] = (Array.isArray(parsed?.quotes) ? parsed.quotes : []).map(String).filter((q: string) => q.trim());
+    const capWords = words(caption).join(" ");
+    const realQuotes = quotes.filter((q) => capWords.includes(words(q).join(" ")) && words(q).length > 0);
+    const judgeSaysBroken = flag === "true";
+    const contradiction = !judgeSaysBroken && realQuotes.length > 0;
+    const broken = judgeSaysBroken || contradiction;
+    const quoted = realQuotes.length ? ` Words in the caption: ${realQuotes.map((q) => `"${q}"`).join(", ")}.` : "";
+    const why = String(parsed?.reason ?? "").trim();
+    return {
+      cost: costOf(data),
+      detail: { lessonId: lesson.id, breaksRule: judgeSaysBroken, quotes, quotesFoundInCaption: realQuotes, contradictionOverridden: contradiction },
+      criterion: {
+        id: lesson.id,
+        verdict: broken ? "no" : "yes",
+        reason: broken
+          ? `Breaks the owner's rule (${lessonRuleText(lesson)}).${quoted}${contradiction ? " (The judge answered 'no violation' but quoted offending words, so code overrode it.)" : ""} ${why}`.trim()
+          : `Follows the owner's rule (${lessonRuleText(lesson)}). ${why}`.trim(),
+        checkedBy,
+      },
+    };
+  } catch (err: any) {
+    return {
+      cost: 0,
+      detail: { lessonId: lesson.id, error: err.message },
+      criterion: { id: lesson.id, verdict: "unparseable", reason: `Lesson check failed: ${err.message.slice(0, 200)}`, checkedBy },
+    };
+  }
+}
+
+export async function judgeCaption(brief: Brief, mem: LoadedMemory, input: LoadedEntry, ownerNote: string, sessionId: string, lessons: Lesson[] = []): Promise<JudgeReport> {
   const rubric = CAPTION_RUBRIC(mem);
+  // Started now so the per-lesson checks run in parallel with the general caption judge.
+  const lessonChecks = Promise.all(activeLessons(lessons).map((l) => judgeLesson(l, brief.caption, ownerNote, sessionId)));
   const prompt = [
     "You are a strict editor checking a social media caption for a small home-based business before it is published.",
     `CAPTION:\n"${brief.caption}"`,
@@ -189,6 +244,13 @@ export async function judgeCaption(brief: Brief, mem: LoadedMemory, input: Loade
     const c = report.criteria.find((x) => x.id === "no-avoided-phrases");
     if (c) Object.assign(c, { verdict: "no", reason: `Exact match found by code: ${hits.join(", ")}`, checkedBy: "code" });
   }
+
+  const lessonResults = await lessonChecks;
+  for (const r of lessonResults) {
+    report.criteria.push(r.criterion);
+    report.cost += r.cost;
+  }
+  if (lessonResults.length) report.itemized = { ...(report.itemized ?? {}), lessonChecks: lessonResults.map((r) => r.detail) };
   return report;
 }
 

@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import { asText, findPhrases, parseJsonLoose, settings, splitPhraseList, visualStyle } from "./config.ts";
 import { generateText } from "./livepeer.ts";
+import { activeLessons, lessonsForPrompt, type Lesson } from "./improvement.ts";
 import type { LoadedEntry, LoadedMemory } from "./memory.ts";
 
 export interface Brief {
@@ -38,6 +39,8 @@ export interface BriefResult {
   promptSha256: string;
   /** True when the writer omitted an invitation to order and the code appended the fixed fallback sentence. */
   ctaAddedByCode: boolean;
+  /** Owner lesson ids the writer did not cite in memoryFactsUsed even after one corrective re-ask (empty = all cited). */
+  lessonCitationMissing: string[];
 }
 
 /** If the caption has no invitation to order, append the fixed, memory-grounded fallback sentence. */
@@ -47,8 +50,9 @@ function ensureOrderInvitation(caption: string): { caption: string; added: boole
   return { caption: `${base} ${settings.orderInvitationFallback}`, added: true };
 }
 
-export function buildBriefPrompt(mem: LoadedMemory, input: LoadedEntry, ownerNote: string): string {
+export function buildBriefPrompt(mem: LoadedMemory, input: LoadedEntry, ownerNote: string, lessons: Lesson[] = []): string {
   const m = mem.memory;
+  const active = activeLessons(lessons);
   return [
     "You are ThreadBiz AI, the content assistant for a small home-based business. Write this week's social media caption and a scene description for an image generator.",
     "GROUNDING: Only state facts that appear in BUSINESS MEMORY or THIS WEEK'S OWNER NOTE. Never invent ingredients, recipe origins, prices, dates, pickup times, places, quantities, or awards.",
@@ -65,11 +69,20 @@ export function buildBriefPrompt(mem: LoadedMemory, input: LoadedEntry, ownerNot
       "- The FINAL sentence must invite people to pre-order. If pickup or ordering specifics are not given, do not invent them.",
       "- 2 to 4 short sentences, at most one emoji, no hashtags.",
     ].join("\n"),
+    active.length
+      ? [
+          "LESSONS FROM THE OWNER (must follow). These come from earlier drafts the owner rejected. They apply to the caption and override anything in BUSINESS MEMORY that seems to conflict, unless THIS WEEK'S OWNER NOTE explicitly says otherwise:",
+          lessonsForPrompt(active),
+        ].join("\n")
+      : "",
     ["IMAGE PROMPT RULES:", ...visualStyle.imagePromptRules.map((r) => `- ${r}`), `- Never use these words: ${visualStyle.bannedPromptWords.join(", ")}`].join("\n"),
     [
       "Return ONLY a JSON object, no markdown, with exactly these keys:",
       '{"caption": string, "imagePrompt": "<scene description only>",',
       ' "memoryFactsUsed": [{"field": "<memory field name>", "how": "<how it shaped the output>"}],',
+      ...(active.length
+        ? [`For EACH owner lesson above, add one memoryFactsUsed entry whose field is exactly "improvement-memory:<lesson id>" (for example "improvement-memory:${active[0].id}") and whose how says what you did to follow it.`]
+        : []),
       ' "claims": [{"claim": "<each factual statement in the caption>", "source": "memory:<field> or owner-note"}]}',
     ].join("\n"),
     `BUSINESS MEMORY (${mem.asset.name}):\n${JSON.stringify(m, null, 2)}`,
@@ -77,7 +90,9 @@ export function buildBriefPrompt(mem: LoadedMemory, input: LoadedEntry, ownerNot
       ? `OWNER-APPROVED SUMMARY OF PRIVATE ENTRY ${input.entry.entryId} (raw text withheld by design):\n${String(input.entry.description ?? "(no summary)")}`
       : `OWNER VOICE NOTE (${input.entry.entryId}):\n${input.text}`,
     `THIS WEEK'S OWNER NOTE:\n${ownerNote || "(none)"}`,
-  ].join("\n\n");
+  ]
+    .filter(Boolean)
+    .join("\n\n");
 }
 
 function revisionBlock(r: Revision): string {
@@ -123,11 +138,13 @@ export async function writeBrief(
   mem: LoadedMemory,
   input: LoadedEntry,
   ownerNote: string,
+  lessons: Lesson[],
   sessionId: string,
   round: number,
   revision?: Revision
 ): Promise<BriefResult> {
-  const basePrompt = buildBriefPrompt(mem, input, ownerNote) + (revision ? `\n\n${revisionBlock(revision)}` : "");
+  const basePrompt = buildBriefPrompt(mem, input, ownerNote, lessons) + (revision ? `\n\n${revisionBlock(revision)}` : "");
+  const active = activeLessons(lessons);
   const attempts: BriefResult["attempts"] = [];
   let prompt = basePrompt;
   let cost = 0;
@@ -138,30 +155,38 @@ export async function writeBrief(
     cost += res.cost;
     model = res.model;
     let parsed: any;
-    let violations: string[];
+    let hard: string[];
+    let missingLessons: string[] = [];
     try {
       parsed = parseJsonLoose(res.text);
-      violations = validate(parsed);
-      if (!violations.length && revision) {
+      hard = validate(parsed);
+      if (!hard.length && revision) {
         // Enforce the "only change what failed" rule in code, not just by instruction.
         if (!revision.captionMayChange) parsed.caption = revision.previous.caption;
         if (!revision.imagePromptMayChange) parsed.imagePrompt = revision.previous.imagePrompt;
       }
-      if (!violations.length) {
+      if (!hard.length) {
         const cta = ensureOrderInvitation(parsed.caption);
         parsed.caption = cta.caption;
         parsed.ctaAddedByCode = cta.added;
-        violations = deterministicViolations(parsed, mem);
+        hard = deterministicViolations(parsed, mem);
       }
+      if (!hard.length) missingLessons = uncitedLessons(parsed, active);
     } catch (err: any) {
-      violations = [`reply was not valid JSON (${err.message.slice(0, 80)})`];
+      hard = [`reply was not valid JSON (${err.message.slice(0, 80)})`];
     }
-    attempts.push({ attempt, violations });
-    if (!violations.length) {
+    const problems = [
+      ...hard,
+      ...missingLessons.map((id) => `memoryFactsUsed has no entry for owner lesson ${id}; add {"field": "improvement-memory:${id}", "how": "<what you did to follow it>"}`),
+    ];
+    attempts.push({ attempt, violations: problems });
+    // A missing lesson citation is asked for once; if the writer still omits it, the run continues and records the gap honestly.
+    if (!hard.length && (!missingLessons.length || attempt === 2)) {
       const ctaAddedByCode = parsed.ctaAddedByCode === true;
       delete parsed.ctaAddedByCode;
       return {
         ctaAddedByCode,
+        lessonCitationMissing: missingLessons,
         brief: parsed as Brief,
         attempts,
         cost,
@@ -170,7 +195,19 @@ export async function writeBrief(
         promptSha256: createHash("sha256").update(basePrompt).digest("hex"),
       };
     }
-    prompt = `${basePrompt}\n\nYOUR PREVIOUS ANSWER HAD THESE PROBLEMS: ${violations.join("; ")}. Fix them and return ONLY the JSON object.`;
+    prompt = `${basePrompt}\n\nYOUR PREVIOUS ANSWER HAD THESE PROBLEMS: ${problems.join("; ")}. Fix them and return ONLY the JSON object.`;
   }
   throw new Error(`Brief (round ${round}) failed after 2 tries: ${JSON.stringify(attempts)}`);
+}
+
+/** Lesson ids the writer did not mention anywhere in memoryFactsUsed. */
+function uncitedLessons(b: Brief, lessons: Lesson[]): string[] {
+  const cited = JSON.stringify(b.memoryFactsUsed ?? []);
+  return lessons.filter((l) => !cited.includes(l.id)).map((l) => l.id);
+}
+
+/** Lesson ids the writer cited (used for reporting). */
+export function citedLessons(b: Brief, lessons: Lesson[]): string[] {
+  const missing = new Set(uncitedLessons(b, lessons));
+  return lessons.filter((l) => !missing.has(l.id)).map((l) => l.id);
 }
