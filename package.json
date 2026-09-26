@@ -10,7 +10,8 @@
     "writeback": "tsx src/writeback.ts",
     "export-dkg": "tsx src/snapshot.ts export",
     "seed": "tsx src/snapshot.ts seed",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "viewer": "tsx src/viewer.ts"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",
