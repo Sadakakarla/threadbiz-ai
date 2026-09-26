@@ -1,8 +1,11 @@
 # ThreadBiz AI
 
-**A social media agent for a tiny home business that learns from the owner's feedback, and keeps that learning as verifiable knowledge on the OriginTrail DKG.**
+**A social media agent for a small home business that learns from the owner's feedback, and keeps that learning as verifiable knowledge on the OriginTrail DKG.**
 
 Track: **Track 2 — Livepeer Agent + OriginTrail DKG**
+
+- 🎬 **Demo video:** https://youtu.be/vAfjPORPN3Y
+- 🔎 **Pipeline replay (in your browser):** https://sadakakarla.github.io/threadbiz-ai/ — every real run step by step: what was read from the DKG, the caption, the image, each judge's verdict, the owner's decision and what was written back.
 
 ---
 
@@ -148,6 +151,7 @@ npm run week -- --memory <business-memory-vN> --journey <journey-00N> --entry <e
 npm run lessons                                     read-only view of the owner's lessons + next journey entry id
 npm run writeback -- lesson|entry --from-run <runId>   recover a decision whose DKG write failed
 npm run export-dkg / npm run seed                    snapshot the knowledge base / load it into a node
+npm run viewer                                       rebuild docs/index.html (the pipeline replay page) from runs/ + the DKG snapshot
 ```
 
 Each run writes `runs/<runId>.json` (inputs incl. the Improvement Memory version and lessons, both rounds, judging, owner decision, DKG writes, cost, timings). `runs/` is gitignored because raw logs contain private text.
@@ -158,11 +162,14 @@ Each run writes `runs/<runId>.json` (inputs incl. the Improvement Memory version
 threadbiz-ai/
 ├── README.md
 ├── LICENSE                      MIT
-├── package.json                 npm scripts: week, lessons, writeback, export-dkg, seed, typecheck
+├── package.json                 npm scripts: week, lessons, writeback, export-dkg, seed, viewer, typecheck
 ├── package-lock.json
 ├── tsconfig.json
 ├── .gitignore                   keeps runs/, node_modules/ and local node state out of git
 ├── .mcp.json                    Livepeer MCP servers for development in Claude Code
+│
+├── docs/
+│   └── index.html               pipeline replay page (GitHub Pages), built by `npm run viewer`
 │
 ├── config/
 │   ├── threadbiz.json           business id, DKG container + context graph ids, Livepeer models
@@ -177,6 +184,7 @@ threadbiz-ai/
 │   ├── memory.ts                load a Business Memory version and a journey entry
 │   ├── dkg.ts                   DKG CLI: status, query, create, discard, read-back verification
 │   ├── snapshot.ts              export the knowledge base / seed a fresh node
+│   ├── viewer.ts                builds the pipeline replay page (docs/index.html)
 │   ├── livepeer.ts              Livepeer MCP client (run_capability, job polling, image download)
 │   ├── ttl.ts                   dependency-free Turtle writer
 │   ├── config.ts                settings loader, tolerant JSON parsing, phrase matching
