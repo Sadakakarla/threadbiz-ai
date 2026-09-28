@@ -2,6 +2,8 @@
 
 **A social media agent for a small home business that learns from the owner's feedback, and keeps that learning as verifiable knowledge on the OriginTrail DKG.**
 
+ThreadBiz helps trust-based local businesses turn changing operational context into accurate, consistent marketing content, while keeping the owner in control of what represents their business.
+
 Track: **Track 2 — Livepeer Agent + OriginTrail DKG**
 
 - 🎬 **Demo video:** https://youtu.be/vAfjPORPN3Y
