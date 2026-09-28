@@ -7,6 +7,7 @@ ThreadBiz helps trust-based local businesses turn changing operational context i
 Track: **Track 2 — Livepeer Agent + OriginTrail DKG**
 
 - 🎬 **Demo video:** https://youtu.be/vAfjPORPN3Y
+- 🎬 **Condensed Demo video:** https://youtu.be/xjyEkU63h68
 - 🔎 **Pipeline replay (in your browser):** https://sadakakarla.github.io/threadbiz-ai/ — every real run step by step: what was read from the DKG, the caption, the image, each judge's verdict, the owner's decision and what was written back.
 
 ---
